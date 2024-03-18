@@ -36,12 +36,14 @@ class PostResource extends Resource
             $fields[] = Forms\Components\Tabs\Tab::make($language->id)
                 ->label($language->name)
                 ->schema([
+                    // TextInput is working
                     Forms\Components\TextInput::make('trans.'.$language->id.'.title')
                         ->label('Title')
                         ->rules([
                             'required', 'min:3',
                         ]),
 
+                    // FileUpload is not working
                     Forms\Components\FileUpload::make('trans.'.$language->id.'.image')
                         ->label('image')
                         ->image()
