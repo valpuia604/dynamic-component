@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Validation\Rule;
 
 class PostResource extends Resource
 {
@@ -35,7 +36,13 @@ class PostResource extends Resource
             $fields[] = Forms\Components\Tabs\Tab::make($language->id)
                 ->label($language->name)
                 ->schema([
-                    Forms\Components\FileUpload::make('image.'.$language->id)
+                    Forms\Components\TextInput::make('trans.'.$language->id.'.title')
+                        ->label('Title')
+                        ->rules([
+                            'required', 'min:3',
+                        ]),
+
+                    Forms\Components\FileUpload::make('trans.'.$language->id.'.image')
                         ->label('image')
                         ->image()
                         // ->required() // this is working
@@ -43,7 +50,8 @@ class PostResource extends Resource
                         // below rules() is not working
                         ->rules([
                             'required',
-                            'dimensions:width=100,height=200',
+                            // 'dimensions:width=100,height=200',
+                            // Rule::dimensions()->width(10)->height(50),
                         ]),
                 ]);
         }
