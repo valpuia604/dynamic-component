@@ -26,14 +26,17 @@ class PostResource extends Resource
                     ->tabs(static::formTabs())
                     ->columnSpanFull(),
 
-                // This below fileupload which is not dynamic is also not working
+                /* This below FileUpload which is not dynamic is partially working
+                ** If I remove `->required()` then the rules is not working
+                ** But if I put `->required()` like below then it's working fine
+                */
                 Forms\Components\FileUpload::make('img')
                     ->label('img')
                     ->image()
-                    ->required() // this is working
+                    ->required()
                     ->rules([
                         // 'required',
-                        'dimensions:width=100,height=200', // this validation is working here with using `->required()`
+                        'dimensions:width=100,height=200',
                         // Rule::dimensions()->width(10)->height(50),
                     ]),
             ]);
@@ -55,6 +58,9 @@ class PostResource extends Resource
                         ]),
 
                     // FileUpload is not working
+                    /* This below FileUpload which is dynamic components is not working
+                    ** Whether `->required()` is put or not, the rules() is not working.
+                    */
                     Forms\Components\FileUpload::make('trans.'.$language->id.'.image')
                         ->label('image')
                         ->image()
@@ -63,7 +69,7 @@ class PostResource extends Resource
                         // below rules() is not working
                         ->rules([
                             // 'required',
-                            'dimensions:width=100,height=200', // this validation is not working with using `->required()`
+                            'dimensions:width=100,height=200',
                             // Rule::dimensions()->width(10)->height(50),
                         ]),
                 ]);
