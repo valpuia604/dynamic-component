@@ -33,7 +33,7 @@ class PostResource extends Resource
                     ->required() // this is working
                     ->rules([
                         // 'required',
-                        'dimensions:width=100,height=200',
+                        'dimensions:width=100,height=200', // this validation is working here with using `->required()`
                         // Rule::dimensions()->width(10)->height(50),
                     ]),
             ]);
@@ -63,7 +63,7 @@ class PostResource extends Resource
                         // below rules() is not working
                         ->rules([
                             // 'required',
-                            'dimensions:width=100,height=200',
+                            'dimensions:width=100,height=200', // this validation is not working with using `->required()`
                             // Rule::dimensions()->width(10)->height(50),
                         ]),
                 ]);
