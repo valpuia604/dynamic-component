@@ -35,14 +35,15 @@ class PostResource extends Resource
             $fields[] = Forms\Components\Tabs\Tab::make($language->id)
                 ->label($language->name)
                 ->schema([
-                    Forms\Components\TextInput::make('trans.'.$language->id)
-                        ->label('language')
+                    Forms\Components\FileUpload::make('image.'.$language->id)
+                        ->label('image')
+                        ->image()
                         // ->required() // this is working
-                        // ->minValue(5) // this is working
                         ->hiddenLabel()
                         // below rules() is not working
                         ->rules([
-                            'required|min:5',
+                            'required',
+                            'dimensions:width=100,height=200',
                         ]),
                 ]);
         }
