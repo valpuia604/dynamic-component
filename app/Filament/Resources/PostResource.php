@@ -30,9 +30,9 @@ class PostResource extends Resource
                 Forms\Components\FileUpload::make('img')
                     ->label('img')
                     ->image()
-                    // ->required() // this is working
+                    ->required() // this is working
                     ->rules([
-                        'required',
+                        // 'required',
                         'dimensions:width=100,height=200',
                         // Rule::dimensions()->width(10)->height(50),
                     ]),
@@ -58,12 +58,12 @@ class PostResource extends Resource
                     Forms\Components\FileUpload::make('trans.'.$language->id.'.image')
                         ->label('image')
                         ->image()
-                        // ->required() // this is working
+                        ->required() // this is working
                         ->hiddenLabel()
                         // below rules() is not working
                         ->rules([
-                            'required',
-                            // 'dimensions:width=100,height=200',
+                            // 'required',
+                            'dimensions:width=100,height=200',
                             // Rule::dimensions()->width(10)->height(50),
                         ]),
                 ]);
