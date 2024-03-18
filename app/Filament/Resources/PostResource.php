@@ -25,6 +25,17 @@ class PostResource extends Resource
                 Forms\Components\Tabs::make()
                     ->tabs(static::formTabs())
                     ->columnSpanFull(),
+
+                // This below fileupload which is not dynamic is also not working
+                Forms\Components\FileUpload::make('img')
+                    ->label('img')
+                    ->image()
+                    // ->required() // this is working
+                    ->rules([
+                        'required',
+                        'dimensions:width=100,height=200',
+                        // Rule::dimensions()->width(10)->height(50),
+                    ]),
             ]);
     }
 
