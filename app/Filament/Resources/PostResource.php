@@ -30,15 +30,17 @@ class PostResource extends Resource
                 ** If I remove `->required()` then the rules is not working
                 ** But if I put `->required()` like below then it's working fine
                 */
-                Forms\Components\FileUpload::make('img')
-                    ->label('img')
-                    ->image()
-                    ->required()
-                    ->rules([
-                        // 'required',
-                        'dimensions:width=100,height=200',
-                        // Rule::dimensions()->width(10)->height(50),
-                    ]),
+                // Forms\Components\FileUpload::make('img')
+                //     ->label('img')
+                //     ->image()
+                //     // ->required()
+                //     ->rules([
+                //         'dimensions:width=100,height=200',
+                //     ]),
+                // ->nestedRecursiveRules([
+                //     'dimensions:width=100,height=200',
+                // ]),
+                // ->nestedRecursiveRules('required|dimensions:width=100,height=200'),
             ]);
     }
 
@@ -59,16 +61,19 @@ class PostResource extends Resource
 
                     // FileUpload is not working
                     /* This below FileUpload which is dynamic components is not working
-                    ** Whether `->required()` is put or not, the rules() is not working.
+                    ** Whether `->required()` is put or not, the nestedRecursiveRules() is not working.
                     */
                     Forms\Components\FileUpload::make('trans.'.$language->id.'.image')
                         ->label('image')
                         ->image()
-                        ->required() // this is working
+                        // ->required() // this is working
                         ->hiddenLabel()
                         // below rules() is not working
-                        ->rules([
-                            // 'required',
+                        // ->rules([
+                        //     'dimensions:width=100,height=200',
+                        // ]),
+                        ->nestedRecursiveRules([
+                            'required',
                             'dimensions:width=100,height=200',
                             // Rule::dimensions()->width(10)->height(50),
                         ]),
